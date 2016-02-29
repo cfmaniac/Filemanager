@@ -27,6 +27,9 @@
 
 <cffunction name="$getRoot" access="private" output="false" returntype="string">
 	<cfargument name="baseTemplatePath" type="string" required="false" default="#GetDirectoryFromPath(GetBaseTemplatePath())#" />
+	<!---Doesn't Work on CF10+
 	<cfargument name="cgiTemplatePath" type="string" required="false" default="#GetDirectoryFromPath(cgi.path_info)#" />
+	---->
+	<cfargument name="cgiTemplatePath" type="string" required="false" default="#getDirectoryFromPath(CGI.SCRIPT_NAME)#" />
 	<cfreturn Replace(arguments.baseTemplatePath, Replace(arguments.cgiTemplatePath, "/", "\", "all"), "", "all") />
 </cffunction>
